@@ -35,12 +35,12 @@
                 <p>JeeWeb欢迎您！</p>
                 <div class="form-group">
                     <div class="input-icon right"><i class="fa fa-user"></i>
-                        <input name="username" class="form-control" placeholder="<spring:message code="sys.login.username.placeholder"/>" required="">
+                        <input name="username" class="form-control" placeholder="<spring:message code="sys.login.username.placeholder"/>" required="" value="admin">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-icon right"><i class="fa fa-key"></i>
-                        <input name="password" class="form-control" placeholder="<spring:message code="sys.login.password.placeholder"/>" required="">
+                        <input name="password" class="form-control" placeholder="<spring:message code="sys.login.password.placeholder"/>" required="" value="123456">
                     </div>
                 </div>
                 <c:if test="${showCaptcha eq 1}">

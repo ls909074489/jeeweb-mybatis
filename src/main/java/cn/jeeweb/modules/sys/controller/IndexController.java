@@ -38,14 +38,13 @@ public class IndexController {
 		model.addAttribute("oaNotifications", oaNotifications);
 		// 加载模版
 		String theme = getTheme(request);
-		return "modules/sys/index/index-" + theme;
+		return "/index/index-" + theme;
 	}
 
 	/**
-	 * 加载风格
 	 * 
 	 * @title: getTheme
-	 * @description: TODO(这里用一句话描述这个方法的作用)
+	 * @description: 加载风格
 	 * @param request
 	 * @return
 	 * @return: String
@@ -90,7 +89,7 @@ public class IndexController {
 
 	@RequestMapping("/main")
 	public String main() {
-		return "modules/sys/index/main";
+		return "/index/main";
 	}
 
 	@RequestMapping("/lock")

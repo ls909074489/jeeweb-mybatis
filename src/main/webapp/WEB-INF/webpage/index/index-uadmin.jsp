@@ -29,9 +29,9 @@
     <div>
         <!--BEGIN BACK TO TOP--><a id="totop" href="#"><i class="fa fa-angle-up"></i></a>
         <!--END BACK TO TOP-->
-        <%@include file="../../../decorators/uadmin/topbar.jsp"%>
+        <%@include file="../decorators/uadmin/topbar.jsp"%>
         <div id="wrapper">
-            <%@include file="../../../decorators/uadmin/left.jsp"%>
+            <%@include file="../decorators/uadmin/left.jsp"%>
             <!--BEGIN PAGE WRAPPER-->
             <div id="page-wrapper">
                 <!--BEGIN TITLE & BREADCRUMB PAGE-->
@@ -50,7 +50,7 @@
                 <!--END TITLE & BREADCRUMB PAGE-->
                 <!--BEGIN CONTENT-->
                 <div class="page-content">
-                     <%@include file="../../../decorators/uadmin/main.jsp"%>
+                     <%@include file="../decorators/uadmin/main.jsp"%>
 			    </div>
 			    <!--END CONTENT-->
     </div>

@@ -52,7 +52,7 @@ public class LoginController extends BaseController {
 			// model.addAttribute("showCaptcha", "1");
 		}
 
-		return new ModelAndView("modules/sys/login/login");
+		return new ModelAndView("/login");
 	}
 
 	@RequestMapping("/logout")
@@ -62,11 +62,11 @@ public class LoginController extends BaseController {
 			if (subject != null && subject.isAuthenticated()) {
 				subject.logout();
 			}
-			return new ModelAndView("modules/sys/login/login");
+			return new ModelAndView("/login");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return new ModelAndView("modules/sys/login/index");
+		return new ModelAndView("/index");
 	}
 
 }

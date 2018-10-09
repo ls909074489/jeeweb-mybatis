@@ -14,6 +14,11 @@
     <html:css  name="favicon,bootstrap,font-awesome,animate"/>
     <link href="${staticPath}/common/css/style.css" rel="stylesheet">  
     
+    <script>
+		function changeStyle(theme){
+			   $.get('${adminPath}/theme/'+theme+'?url='+window.top.location.href,function(result){   window.location.reload();});
+		}
+	</script>
 </head>
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
     <div id="wrapper">
@@ -22,7 +27,70 @@
             <div class="nav-close"><i class="fa fa-times-circle"></i>
             </div>
             <div class="sidebar-collapse">
-                <%@include file="../inspinia/left.jsp"%>
+                <!-- BEGIN SIDEBAR MENU -->
+				<ul class="nav" id="side-menu">
+					<li class="nav-header">
+						<div class="dropdown profile-element">
+							<span class="default-avatar"><img alt="image" class="img-circle"
+								src="${appPath}/${fns:getUser().portrait}" /></span> <a
+								data-toggle="dropdown" class="dropdown-toggle" href="#"> <span
+								class="clear"> <span class="block m-t-xs"><strong
+										class="font-bold">${fns:getUser().username}</strong></span> <span
+									class="text-muted text-xs block">${fns:getUser().realname}<b class="caret"></b></span>
+							</span>
+							</a>
+							<ul class="dropdown-menu animated fadeInRight m-t-xs">
+								<li><a class="J_menuItem" href="${adminPath}/sys/user/${fns:getUser().id}/avatar">修改头像</a></li>
+								<li style="display:none;">
+									<a  href="#" onclick="openDialog(title,url,gridId,width, height);update('修改密码','/jeeweb/admin/sys/user/changePassword','userGridId','800px','500px')">修改密码</a>
+								</li>
+								<li class="divider"></li>
+				                <li><a onclick="changeStyle('ace')" href="#">ACE模式</a></li> 
+				                <li><a onclick="changeStyle('uadmin')" href="#">FLAT模式</a></li> 
+								<li class="divider"></li>
+								<li><a href="${adminPath}/logout">安全退出</a></li>
+							</ul>
+						</div>
+						<div class="logo-element">JW</div>
+					</li>
+					
+					<c:forEach items="${menus}" var="menu">
+					     <c:if test="${menu.parentId == null && menu.isshow eq '1'}">
+						     <li>
+						        <c:choose>
+								   <c:when test="${menu.hasChildren}">  
+									  <a href="#"><i class="fa ${menu.menuIcon}"></i> <span class="nav-label">${menu.name}</span><span class="fa arrow"></span></a>  
+								   </c:when>
+								   <c:otherwise> 
+									  <a  class="J_menuItem"  href="${adminPath}/${menu.url}"><i class="fa ${menu.menuIcon}"></i> 
+									  	<span class="nav-label">${menu.name}</span><span class="fa arrow"></span>
+									  </a>
+								   </c:otherwise>
+								</c:choose>
+								<ul class="nav nav-second-level">
+									 <c:forEach items="${menus}" var="secondMenu">
+									     <c:if test="${secondMenu.parentId == menu.id && secondMenu.isshow eq '1'}">
+										     <li>
+										         <c:if test="${!secondMenu.hasChildren}"><a class="J_menuItem" href="${adminPath}/${secondMenu.url}">${secondMenu.name}</a></c:if>
+											     <c:if test="${secondMenu.hasChildren}"><a href="#">${secondMenu.name}<span class="fa arrow"></span></a></c:if>
+											     <!--  这里应该循环，但是出现了错误 -->
+												 <ul class="nav nav-third-level">
+												     <c:forEach items="${menus}" var="thirdMenu">
+												       <c:if test="${thirdMenu.parentId == secondMenu.id && thirdMenu.isshow eq '1'}">
+														  <li><a class="J_menuItem" href="${adminPath}/${thirdMenu.url}">${thirdMenu.name}</a></li>
+													   </c:if>
+													 </c:forEach>
+												 </ul>
+											 </li>
+										 </c:if>
+									 </c:forEach>
+								</ul> 
+							</li>
+					     </c:if>
+					</c:forEach>
+					
+				</ul>
+				<!-- END SIDEBAR MENU -->
             </div>
         </nav>
         <!--左侧导航结束-->
