@@ -32,8 +32,8 @@
                     <ol class="breadcrumb page-breadcrumb">
                         <li><i class="fa fa-home"></i>&nbsp;<a href="${adminPath}">首页</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                         <c:forEach items="${fn:split(pmenuids, '/')}" var="pmenuid">
-                        <c:set var="menu" value="${fns:getMenuById(pmenuid)}" />
-                        <li><a href="#">${menu.name}</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+                        	<c:set var="menu" value="${fns:getMenuById(pmenuid)}" />
+                        	<li><a href="#">${menu.name}</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
                         </c:forEach>
                         <li class="active">${currentMenu.name}</li>
                     </ol>
